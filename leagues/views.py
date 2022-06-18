@@ -90,9 +90,6 @@ def index(request):
 			if player.first_name == "Joshua":
 				joshuas.append(player)
 
-	print("---" * 50)
-	print(joshuas)
-
 	# all teams that have had 12 or more players, past and present. (HINT: Look up the Django annotate function.)
 	#without annotate
 	teams12 = []
@@ -109,8 +106,7 @@ def index(request):
 
 	# all players and count of teams played for, sorted by the number of teams they've played for
 	countTeams = Player.objects.all().annotate(Count('all_teams')).order_by('all_teams__count')
-	print("---" * 50)
-	print(vars(countTeams[0]))
+
 	context = {
 		'countTeams':countTeams,
 		'teams12ormore':teams12ormore,
